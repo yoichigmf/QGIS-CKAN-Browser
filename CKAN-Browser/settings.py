@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from PyQt4.QtCore import QSettings
-from PyQt4.QtNetwork import QNetworkProxy
+from PyQt5.QtCore import QSettings
+from PyQt5.QtNetwork import QNetworkProxy
 import os
 import configparser
 
