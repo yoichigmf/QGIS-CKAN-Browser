@@ -3,7 +3,7 @@
 from PyQt4.QtCore import QSettings
 from PyQt4.QtNetwork import QNetworkProxy
 import os
-import ConfigParser
+import configparser
 
 class Settings:
 
@@ -17,7 +17,7 @@ class Settings:
         self.request_timeout = 15
         self.ckan_url = None
         self.cache_dir = None
-        self.DLG_CAPTION = u'CKAN-Browser'
+        self.DLG_CAPTION = 'CKAN-Browser'
         self.KEY_CACHE_DIR = 'ckan_browser/cache_dir'
         self.KEY_CKAN_API = 'ckan_browser/ckan_api'
         self.version = self._determine_version()
@@ -65,7 +65,7 @@ class Settings:
     def _determine_version(self):
         """http://gis.stackexchange.com/a/169266/8673"""
         # error handling?
-        config = ConfigParser.ConfigParser()
+        config = configparser.ConfigParser()
         config.read(os.path.join(os.path.dirname(__file__),'metadata.txt'))
         
         return config.get('general', 'version')

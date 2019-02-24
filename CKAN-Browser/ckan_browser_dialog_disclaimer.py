@@ -1,52 +1,61 @@
 # -*- coding: utf-8 -*-
-"""
-/***************************************************************************
- CKAN-Browser
-                                 A QGIS plugin
- Download and display CKAN enabled Open Data Portals
-                              -------------------
-        begin                : 2014-10-24
-        git sha              : $Format:%H$
-        copyright            : (C) 2014 by BergWerk GIS
-        email                : wb@BergWerk-GIS.at
- ***************************************************************************/
 
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
+# Form implementation generated from reading ui file 'ckan_browser_dialog_disclaimer.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
 
-import os
+from PyQt5 import QtCore, QtGui, QtWidgets
 
-from PyQt4 import QtGui, uic
-from util import Util
+class Ui_CKANBrowserDisclaimer(object):
+    def setupUi(self, CKANBrowserDisclaimer):
+        CKANBrowserDisclaimer.setObjectName("CKANBrowserDisclaimer")
+        CKANBrowserDisclaimer.resize(394, 290)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(CKANBrowserDisclaimer.sizePolicy().hasHeightForWidth())
+        CKANBrowserDisclaimer.setSizePolicy(sizePolicy)
+        CKANBrowserDisclaimer.setMinimumSize(QtCore.QSize(0, 0))
+        CKANBrowserDisclaimer.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.gridLayout = QtWidgets.QGridLayout(CKANBrowserDisclaimer)
+        self.gridLayout.setObjectName("gridLayout")
+        self.IDC_lblLogo = QtWidgets.QLabel(CKANBrowserDisclaimer)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Fixed, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.IDC_lblLogo.sizePolicy().hasHeightForWidth())
+        self.IDC_lblLogo.setSizePolicy(sizePolicy)
+        self.IDC_lblLogo.setMinimumSize(QtCore.QSize(60, 60))
+        self.IDC_lblLogo.setMaximumSize(QtCore.QSize(60, 60))
+        self.IDC_lblLogo.setText("")
+        self.IDC_lblLogo.setObjectName("IDC_lblLogo")
+        self.gridLayout.addWidget(self.IDC_lblLogo, 0, 0, 1, 1)
+        self.IDC_lblTitle = QtWidgets.QLabel(CKANBrowserDisclaimer)
+        font = QtGui.QFont()
+        font.setPointSize(28)
+        font.setBold(True)
+        font.setWeight(75)
+        self.IDC_lblTitle.setFont(font)
+        self.IDC_lblTitle.setObjectName("IDC_lblTitle")
+        self.gridLayout.addWidget(self.IDC_lblTitle, 0, 1, 1, 1)
+        self.button_box = QtWidgets.QDialogButtonBox(CKANBrowserDisclaimer)
+        self.button_box.setOrientation(QtCore.Qt.Horizontal)
+        self.button_box.setStandardButtons(QtWidgets.QDialogButtonBox.Close)
+        self.button_box.setObjectName("button_box")
+        self.gridLayout.addWidget(self.button_box, 2, 1, 1, 1)
+        self.IDC_brInfo = QtWidgets.QTextBrowser(CKANBrowserDisclaimer)
+        self.IDC_brInfo.setObjectName("IDC_brInfo")
+        self.gridLayout.addWidget(self.IDC_brInfo, 1, 0, 1, 2)
 
-FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'ckan_browser_dialog_disclaimer.ui'))
+        self.retranslateUi(CKANBrowserDisclaimer)
+        self.button_box.accepted.connect(CKANBrowserDisclaimer.accept)
+        self.button_box.rejected.connect(CKANBrowserDisclaimer.reject)
+        QtCore.QMetaObject.connectSlotsByName(CKANBrowserDisclaimer)
 
+    def retranslateUi(self, CKANBrowserDisclaimer):
+        _translate = QtCore.QCoreApplication.translate
+        CKANBrowserDisclaimer.setWindowTitle(_translate("CKANBrowserDisclaimer", "dlg_dsc_dlg_title"))
+        self.IDC_lblTitle.setText(_translate("CKANBrowserDisclaimer", "dlg_dsc_title"))
 
-class CKANBrowserDialogDisclaimer(QtGui.QDialog, FORM_CLASS):
-    def __init__(self, settings, parent=None):
-        """Constructor."""
-        super(CKANBrowserDialogDisclaimer, self).__init__(parent)
-        # Set up the user interface from Designer.
-        # After setupUI you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
-        self.setModal(True)
-        self.setupUi(self)
-        self.main_win = parent
-        self.settings = settings
-        self.util = Util(self.settings, self.main_win)
-        
-        logo_path = self.util.resolve(u'ckan_logo_big.png')
-        self.IDC_lblLogo.setPixmap(QtGui.QPixmap(logo_path))
-        self.IDC_brInfo.setOpenExternalLinks(True)
-        self.IDC_brInfo.setHtml(self.util.tr('py_disc_info_html'))
-        

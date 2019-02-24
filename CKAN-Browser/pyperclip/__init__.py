@@ -38,7 +38,7 @@ if IS_WINDOWS:
     from .windows import init_windows_clipboard
 
 PY2 = '2' == platform.python_version_tuple()[0]
-STRING_FUNCTION = unicode if PY2 else str
+STRING_FUNCTION = str if PY2 else str
 
 # `import PyQt4` sys.exit()s if DISPLAY is not in the environment.
 # Thus, we need to detect the presence of $DISPLAY manually not not load PyQt4 if it is absent.

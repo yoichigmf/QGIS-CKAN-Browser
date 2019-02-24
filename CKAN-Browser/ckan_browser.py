@@ -23,13 +23,13 @@
 from PyQt4.QtCore import QSettings, QTranslator, qVersion, QCoreApplication
 from PyQt4.QtGui import QAction, QIcon
 # Initialize Qt resources from file resources.py
-import resources_rc
+from . import resources_rc
 # Import the code for the dialog
-from ckan_browser_dialog import CKANBrowserDialog
-from ckan_browser_dialog_settings import CKANBrowserDialogSettings
+from .ckan_browser_dialog import CKANBrowserDialog
+from .ckan_browser_dialog_settings import CKANBrowserDialogSettings
 import os.path
-from settings import Settings
-from util import Util
+from .settings import Settings
+from .util import Util
 
 
 class CKANBrowser:
@@ -85,10 +85,10 @@ class CKANBrowser:
 
         # Declare instance attributes
         self.actions = []
-        self.menu = self.util.tr(u'&Open Data (CKAN) Browser')
+        self.menu = self.util.tr('&Open Data (CKAN) Browser')
         # TODO: We are going to let the user set this up in a future iteration
-        self.toolbar = self.iface.addToolBar(u'Open Data (CKAN) Browser')
-        self.toolbar.setObjectName(u'Open Data (CKAN) Browser')
+        self.toolbar = self.iface.addToolBar('Open Data (CKAN) Browser')
+        self.toolbar.setObjectName('Open Data (CKAN) Browser')
 
 
     def add_action(
@@ -171,7 +171,7 @@ class CKANBrowser:
 
         self.add_action(
             icon_path,
-            text=self.util.tr(u'Open Data (CKAN) Browser'),
+            text=self.util.tr('Open Data (CKAN) Browser'),
             callback=self.run,
             parent=self.iface.mainWindow()
         )
@@ -180,7 +180,7 @@ class CKANBrowser:
         
         self.add_action(
             icon_settings,
-            text=self.util.tr(u'ckan_browser_settings'),
+            text=self.util.tr('ckan_browser_settings'),
             callback=self.open_settings,
             parent=self.iface.mainWindow()
         )
@@ -189,7 +189,7 @@ class CKANBrowser:
         """Removes the plugin menu item and icon from QGIS GUI."""
         for action in self.actions:
             self.iface.removePluginMenu(
-                self.util.tr(u'&Open Data (CKAN) Browser'),
+                self.util.tr('&Open Data (CKAN) Browser'),
                 action)
             self.iface.removeToolBarIcon(action)
 
@@ -199,15 +199,15 @@ class CKANBrowser:
         is_open = QSettings().value("ckan_browser/isopen", False)
         #Python treats almost everything as True````
         #is_open = bool(is_open)
-        self.util.msg_log(u'isopen: {0}'.format(is_open))
+        self.util.msg_log('isopen: {0}'.format(is_open))
         
         #!!!string comparison - Windows and Linux treat it as string, Mac as bool
         # so we convert string to bool
-        if isinstance(is_open, basestring):
+        if isinstance(is_open, str):
             is_open = self.util.str2bool(is_open)
         
         if is_open:
-            self.util.msg_log(u'Dialog already opened')
+            self.util.msg_log('Dialog already opened')
             return
         
         # auf URL testen

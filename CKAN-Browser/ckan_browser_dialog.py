@@ -1,412 +1,277 @@
 # -*- coding: utf-8 -*-
-"""
-/***************************************************************************
- CKAN-Browser
-                                 A QGIS plugin
- Download and display CKAN enabled Open Data Portals
-                              -------------------
-        begin                : 2014-10-24
-        git sha              : $Format:%H$
-        copyright            : (C) 2014 by BergWerk GIS
-        email                : wb@BergWerk-GIS.at
- ***************************************************************************/
 
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
+# Form implementation generated from reading ui file 'ckan_browser_dialog_base.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
 
-import math
-import os
-from PyQt4.QtCore import Qt, QTimer
-from PyQt4 import QtGui, uic
-from PyQt4.QtGui import QApplication, QListWidgetItem, QDialog, QMessageBox
-from ckan_browser_dialog_disclaimer import CKANBrowserDialogDisclaimer
-import pyperclip
-from ckanconnector import CkanConnector
-from util import Util
+from PyQt5 import QtCore, QtGui, QtWidgets
 
+class Ui_CKANBrowserDialogBase(object):
+    def setupUi(self, CKANBrowserDialogBase):
+        CKANBrowserDialogBase.setObjectName("CKANBrowserDialogBase")
+        CKANBrowserDialogBase.setWindowModality(QtCore.Qt.ApplicationModal)
+        CKANBrowserDialogBase.resize(800, 620)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Maximum)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(CKANBrowserDialogBase.sizePolicy().hasHeightForWidth())
+        CKANBrowserDialogBase.setSizePolicy(sizePolicy)
+        CKANBrowserDialogBase.setMinimumSize(QtCore.QSize(800, 620))
+        CKANBrowserDialogBase.setMaximumSize(QtCore.QSize(2300, 1600))
+        CKANBrowserDialogBase.setModal(False)
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(CKANBrowserDialogBase)
+        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_3.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
+        self.verticalLayout = QtWidgets.QVBoxLayout()
+        self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetDefaultConstraint)
+        self.verticalLayout.setObjectName("verticalLayout")
+        self.label = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.label.setObjectName("label")
+        self.verticalLayout.addWidget(self.label)
+        self.horizontalLayout_7 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
+        self.IDC_lineSearch = QtWidgets.QLineEdit(CKANBrowserDialogBase)
+        self.IDC_lineSearch.setObjectName("IDC_lineSearch")
+        self.horizontalLayout_7.addWidget(self.IDC_lineSearch)
+        self.pushButton_3 = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.pushButton_3.setMinimumSize(QtCore.QSize(14, 22))
+        self.pushButton_3.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_3.setFont(font)
+        self.pushButton_3.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.horizontalLayout_7.addWidget(self.pushButton_3)
+        self.verticalLayout.addLayout(self.horizontalLayout_7)
+        self.IDC_bSearch = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.IDC_bSearch.setObjectName("IDC_bSearch")
+        self.verticalLayout.addWidget(self.IDC_bSearch)
+        self.IDC_bListAll = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.IDC_bListAll.setObjectName("IDC_bListAll")
+        self.verticalLayout.addWidget(self.IDC_bListAll)
+        self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setContentsMargins(-1, 0, -1, 0)
+        self.horizontalLayout.setObjectName("horizontalLayout")
+        self.label_5 = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.label_5.setObjectName("label_5")
+        self.horizontalLayout.addWidget(self.label_5)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
+        self.pushButton_4 = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.pushButton_4.setMinimumSize(QtCore.QSize(14, 22))
+        self.pushButton_4.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_4.setFont(font)
+        self.pushButton_4.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.pushButton_4.setObjectName("pushButton_4")
+        self.horizontalLayout.addWidget(self.pushButton_4)
+        self.verticalLayout.addLayout(self.horizontalLayout)
+        self.IDC_listGroup = QtWidgets.QListWidget(CKANBrowserDialogBase)
+        self.IDC_listGroup.setMinimumSize(QtCore.QSize(160, 0))
+        self.IDC_listGroup.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.IDC_listGroup.setObjectName("IDC_listGroup")
+        self.verticalLayout.addWidget(self.IDC_listGroup)
+        self.IDC_lblApiUrl = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.IDC_lblApiUrl.setMinimumSize(QtCore.QSize(0, 60))
+        self.IDC_lblApiUrl.setFrameShape(QtWidgets.QFrame.Box)
+        self.IDC_lblApiUrl.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.IDC_lblApiUrl.setWordWrap(True)
+        self.IDC_lblApiUrl.setObjectName("IDC_lblApiUrl")
+        self.verticalLayout.addWidget(self.IDC_lblApiUrl)
+        self.IDC_lblCacheDir = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.IDC_lblCacheDir.setMinimumSize(QtCore.QSize(0, 60))
+        self.IDC_lblCacheDir.setFrameShape(QtWidgets.QFrame.Box)
+        self.IDC_lblCacheDir.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.IDC_lblCacheDir.setWordWrap(True)
+        self.IDC_lblCacheDir.setObjectName("IDC_lblCacheDir")
+        self.verticalLayout.addWidget(self.IDC_lblCacheDir)
+        self.IDC_lblVersion = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.IDC_lblVersion.setMinimumSize(QtCore.QSize(0, 0))
+        self.IDC_lblVersion.setFrameShape(QtWidgets.QFrame.Box)
+        self.IDC_lblVersion.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.IDC_lblVersion.setObjectName("IDC_lblVersion")
+        self.verticalLayout.addWidget(self.IDC_lblVersion)
+        self.IDC_bDisclaimer = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.IDC_bDisclaimer.setObjectName("IDC_bDisclaimer")
+        self.verticalLayout.addWidget(self.IDC_bDisclaimer)
+        self.horizontalLayout_3.addLayout(self.verticalLayout)
+        self.horizontalLayout_2.addLayout(self.horizontalLayout_3)
+        self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.horizontalLayout_4.setContentsMargins(0, -1, 0, -1)
+        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
+        self.verticalLayout_3 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_3.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.verticalLayout_3.setContentsMargins(0, -1, 0, -1)
+        self.verticalLayout_3.setObjectName("verticalLayout_3")
+        self.IDC_lblSuchergebnisse = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.IDC_lblSuchergebnisse.setObjectName("IDC_lblSuchergebnisse")
+        self.verticalLayout_3.addWidget(self.IDC_lblSuchergebnisse)
+        self.IDC_listResults = QtWidgets.QListWidget(CKANBrowserDialogBase)
+        self.IDC_listResults.setMinimumSize(QtCore.QSize(270, 0))
+        self.IDC_listResults.setObjectName("IDC_listResults")
+        self.verticalLayout_3.addWidget(self.IDC_listResults)
+        self.IDC_lblPage = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.IDC_lblPage.setAlignment(QtCore.Qt.AlignCenter)
+        self.IDC_lblPage.setObjectName("IDC_lblPage")
+        self.verticalLayout_3.addWidget(self.IDC_lblPage)
+        self.horizontalLayout_5 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_5.setContentsMargins(-1, 0, -1, -1)
+        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
+        self.pushButton = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.pushButton.setMinimumSize(QtCore.QSize(15, 0))
+        self.pushButton.setObjectName("pushButton")
+        self.horizontalLayout_5.addWidget(self.pushButton)
+        self.pushButton_2 = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.pushButton_2.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.pushButton_2.sizePolicy().hasHeightForWidth())
+        self.pushButton_2.setSizePolicy(sizePolicy)
+        self.pushButton_2.setMinimumSize(QtCore.QSize(15, 0))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.horizontalLayout_5.addWidget(self.pushButton_2)
+        self.verticalLayout_3.addLayout(self.horizontalLayout_5)
+        self.horizontalLayout_4.addLayout(self.verticalLayout_3)
+        self.horizontalLayout_2.addLayout(self.horizontalLayout_4)
+        self.verticalLayout_4 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_4.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.verticalLayout_4.setContentsMargins(0, -1, 0, -1)
+        self.verticalLayout_4.setObjectName("verticalLayout_4")
+        self.label_3 = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.label_3.setObjectName("label_3")
+        self.verticalLayout_4.addWidget(self.label_3)
+        self.IDC_textDetails = QtWidgets.QTextEdit(CKANBrowserDialogBase)
+        self.IDC_textDetails.setMinimumSize(QtCore.QSize(250, 160))
+        self.IDC_textDetails.setObjectName("IDC_textDetails")
+        self.verticalLayout_4.addWidget(self.IDC_textDetails)
+        self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
+        self.label_4 = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.label_4.setObjectName("label_4")
+        self.horizontalLayout_8.addWidget(self.label_4)
+        spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_8.addItem(spacerItem1)
+        self.pushButton_5 = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.pushButton_5.setMinimumSize(QtCore.QSize(14, 22))
+        self.pushButton_5.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_5.setFont(font)
+        self.pushButton_5.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.pushButton_5.setObjectName("pushButton_5")
+        self.horizontalLayout_8.addWidget(self.pushButton_5)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_8)
+        self.IDC_listRessources = QtWidgets.QListWidget(CKANBrowserDialogBase)
+        self.IDC_listRessources.setMinimumSize(QtCore.QSize(0, 160))
+        self.IDC_listRessources.setObjectName("IDC_listRessources")
+        self.verticalLayout_4.addWidget(self.IDC_listRessources)
+        self.horizontalLayout_9 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
+        self.IDC_lblRessourceURL = QtWidgets.QLabel(CKANBrowserDialogBase)
+        self.IDC_lblRessourceURL.setObjectName("IDC_lblRessourceURL")
+        self.horizontalLayout_9.addWidget(self.IDC_lblRessourceURL)
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout_9.addItem(spacerItem2)
+        self.pushButton_6 = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.pushButton_6.setMinimumSize(QtCore.QSize(14, 22))
+        self.pushButton_6.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.pushButton_6.setFont(font)
+        self.pushButton_6.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.pushButton_6.setObjectName("pushButton_6")
+        self.horizontalLayout_9.addWidget(self.pushButton_6)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_9)
+        self.horizontalLayout_6 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
+        self.IDC_plainTextLink = QtWidgets.QPlainTextEdit(CKANBrowserDialogBase)
+        self.IDC_plainTextLink.setMinimumSize(QtCore.QSize(0, 50))
+        self.IDC_plainTextLink.setMaximumSize(QtCore.QSize(16777215, 16777215))
+        self.IDC_plainTextLink.setReadOnly(True)
+        self.IDC_plainTextLink.setPlainText("")
+        self.IDC_plainTextLink.setObjectName("IDC_plainTextLink")
+        self.horizontalLayout_6.addWidget(self.IDC_plainTextLink)
+        self.verticalLayout_2 = QtWidgets.QVBoxLayout()
+        self.verticalLayout_2.setObjectName("verticalLayout_2")
+        self.IDC_bCopy = QtWidgets.QToolButton(CKANBrowserDialogBase)
+        self.IDC_bCopy.setText("")
+        self.IDC_bCopy.setIconSize(QtCore.QSize(24, 24))
+        self.IDC_bCopy.setObjectName("IDC_bCopy")
+        self.verticalLayout_2.addWidget(self.IDC_bCopy)
+        spacerItem3 = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
+        self.verticalLayout_2.addItem(spacerItem3)
+        self.horizontalLayout_6.addLayout(self.verticalLayout_2)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_6)
+        self.IDC_bLoadResource = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.IDC_bLoadResource.setObjectName("IDC_bLoadResource")
+        self.verticalLayout_4.addWidget(self.IDC_bLoadResource)
+        self.IDC_bClose = QtWidgets.QPushButton(CKANBrowserDialogBase)
+        self.IDC_bClose.setObjectName("IDC_bClose")
+        self.verticalLayout_4.addWidget(self.IDC_bClose)
+        self.horizontalLayout_2.addLayout(self.verticalLayout_4)
 
-FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'ckan_browser_dialog_base.ui'))
+        self.retranslateUi(CKANBrowserDialogBase)
+        self.IDC_lineSearch.textChanged['QString'].connect(CKANBrowserDialogBase.searchtextchanged)
+        self.IDC_listResults.currentItemChanged['QListWidgetItem*','QListWidgetItem*'].connect(CKANBrowserDialogBase.resultitemchanged)
+        self.IDC_bLoadResource.clicked.connect(CKANBrowserDialogBase.load_resource_clicked)
+        self.IDC_bClose.clicked.connect(CKANBrowserDialogBase.close_dlg)
+        self.IDC_listGroup.itemChanged['QListWidgetItem*'].connect(CKANBrowserDialogBase.list_group_item_changed)
+        self.IDC_bSearch.clicked.connect(CKANBrowserDialogBase.suchen)
+        self.IDC_listGroup.itemActivated['QListWidgetItem*'].connect(CKANBrowserDialogBase.category_item_clicked)
+        self.pushButton.clicked.connect(CKANBrowserDialogBase.previous_page_clicked)
+        self.pushButton_2.clicked.connect(CKANBrowserDialogBase.next_page_clicked)
+        self.IDC_bListAll.clicked.connect(CKANBrowserDialogBase.list_all_clicked)
+        self.IDC_bDisclaimer.clicked.connect(CKANBrowserDialogBase.show_disclaimer)
+        self.pushButton_3.clicked.connect(CKANBrowserDialogBase.help_ttip_search)
+        self.pushButton_4.clicked.connect(CKANBrowserDialogBase.help_ttip_filter)
+        self.pushButton_5.clicked.connect(CKANBrowserDialogBase.help_ttip_data_list)
+        self.IDC_bCopy.clicked.connect(CKANBrowserDialogBase.copy_clipboard)
+        self.IDC_listRessources.currentItemChanged['QListWidgetItem*','QListWidgetItem*'].connect(CKANBrowserDialogBase.resource_item_changed)
+        self.pushButton_6.clicked.connect(CKANBrowserDialogBase.help_ttip_resource)
+        QtCore.QMetaObject.connectSlotsByName(CKANBrowserDialogBase)
 
-class CKANBrowserDialog(QtGui.QDialog, FORM_CLASS):
+    def retranslateUi(self, CKANBrowserDialogBase):
+        _translate = QtCore.QCoreApplication.translate
+        CKANBrowserDialogBase.setWindowTitle(_translate("CKANBrowserDialogBase", "dlg_base_title"))
+        self.label.setText(_translate("CKANBrowserDialogBase", "dlg_base_search_term"))
+        self.pushButton_3.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_search"))
+        self.pushButton_3.setText(_translate("CKANBrowserDialogBase", "?"))
+        self.IDC_bSearch.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_strt_srch"))
+        self.IDC_bListAll.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_show"))
+        self.IDC_bListAll.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_show_all"))
+        self.label_5.setText(_translate("CKANBrowserDialogBase", "dlg_base_filter_to"))
+        self.pushButton_4.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_filter"))
+        self.pushButton_4.setText(_translate("CKANBrowserDialogBase", "?"))
+        self.IDC_lblApiUrl.setText(_translate("CKANBrowserDialogBase", "IDC_lblApiUrl"))
+        self.IDC_lblCacheDir.setText(_translate("CKANBrowserDialogBase", "IDC_lblCacheDir"))
+        self.IDC_lblVersion.setText(_translate("CKANBrowserDialogBase", "IDC_lblVersion"))
+        self.IDC_bDisclaimer.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_disclaimer"))
+        self.IDC_lblSuchergebnisse.setText(_translate("CKANBrowserDialogBase", "dlg_base_srch_rslt"))
+        self.IDC_lblPage.setText(_translate("CKANBrowserDialogBase", "IDC_lblPage"))
+        self.pushButton.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_prev"))
+        self.pushButton.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_lt"))
+        self.pushButton_2.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_next"))
+        self.pushButton_2.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_gt"))
+        self.label_3.setText(_translate("CKANBrowserDialogBase", "dlg_base_descr"))
+        self.label_4.setText(_translate("CKANBrowserDialogBase", "dlg_base_data_list"))
+        self.pushButton_5.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_data_list"))
+        self.pushButton_5.setText(_translate("CKANBrowserDialogBase", "?"))
+        self.IDC_lblRessourceURL.setText(_translate("CKANBrowserDialogBase", "dlg_base_ressource"))
+        self.pushButton_6.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_resource"))
+        self.pushButton_6.setText(_translate("CKANBrowserDialogBase", "?"))
+        self.IDC_bCopy.setToolTip(_translate("CKANBrowserDialogBase", "dlg_base_ttip_copy"))
+        self.IDC_bLoadResource.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_load_data"))
+        self.IDC_bClose.setText(_translate("CKANBrowserDialogBase", "dlg_base_btn_close"))
 
-    def __init__(self, settings, iface, parent=None):
-        """Constructor."""
-        super(CKANBrowserDialog, self).__init__(parent)
-        # Set up the user interface from Designer.
-        # After setupUI you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
-        self.setupUi(self)
-        self.iface = iface
-        self.main_win = parent
-        self.search_txt = ''
-        self.cur_package = None
-        self.result_count = 0
-        self.current_page = 1
-        self.page_count = 0
-        self.current_group = None
-        # TODO:
-        # * create settings dialog
-        # * read SETTINGS
-
-        self.settings = settings
-        self.util = Util(self.settings, self.main_win)
-
-        self.IDC_lblApiUrl.setText(self.util.tr('py_dlg_base_server') + self.settings.ckan_url)
-        self.IDC_lblCacheDir.setText(self.util.tr('py_dlg_base_cache_path') + self.settings.cache_dir)
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        # TODO: automatically populate version
-        # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!111
-        self.IDC_lblVersion.setText(self.util.tr('py_dlg_base_version').format(self.settings.version))
-        self.IDC_lblSuchergebnisse.setText(self.util.tr('py_dlg_base_search_result'))
-        self.IDC_lblPage.setText(self.util.tr('py_dlg_base_page_1_1'))
-
-        icon_path = self.util.resolve(u'icon-copy.png')
-        self.IDC_bCopy.setIcon(QtGui.QIcon(icon_path))
-
-        self.cc = CkanConnector(self.settings, self.util)
-
-        self.timer = QTimer()
-        self.timer.setSingleShot(True)
-        self.timer.timeout.connect(self.window_loaded)
-        QApplication.setOverrideCursor(Qt.WaitCursor)
-
-    def showEvent(self, event):
-        self.util.msg_log('showevent')
-        QDialog.showEvent(self, event)
-        self.timer.start(500)
-        self.util.msg_log('showevent finished')
-
-    def window_loaded(self):
-        try:
-            self.util.msg_log('window_loaded')
-            self.util.msg_log('before stop')
-            self.timer.stop()
-            self.timer = None
-            self.util.msg_log('before get_groupds')
-            ok, result = self.cc.get_groups()
-            if ok is False:
-                QApplication.restoreOverrideCursor()
-                self.util.dlg_warning(result)
-                return
-
-            if not result:
-                self.list_all_clicked()
-            else:
-                for entry in result:
-                    item = QListWidgetItem(entry['display_name'])
-                    item.setData(Qt.UserRole, entry)
-                    #item.setCheckState(Qt.Checked)
-                    item.setCheckState(Qt.Unchecked)
-                    self.IDC_listGroup.addItem(item)
-        finally:
-            QApplication.restoreOverrideCursor()
-
-
-    def close_dlg(self):
-        QDialog.reject(self)
-        
-    
-    def show_disclaimer(self):
-        self.dlg_disclaimer = CKANBrowserDialogDisclaimer(self.settings)
-        self.dlg_disclaimer.show()
-
-    def searchtextchanged(self, search_txt):
-        self.search_txt = search_txt
-
-    def suchen(self):
-        self.current_page = 1
-        self.current_group = None
-        self.__search_package()
-
-    def list_all_clicked(self):
-        self.current_page = 1
-        self.current_group = None
-        # don't hint on wildcards, empty text works as well, as CKAN uses *:* as
-        # default when ?q= has not text
-        # self.IDC_lineSearch.setText('*:*')
-        self.IDC_lineSearch.setText('')
-        self.__search_package()
-
-    def category_item_clicked(self, item):
-        self.util.msg_log(item.data(Qt.UserRole)['name'])
-        self.current_group = item.data(Qt.UserRole)['name']
-        self.current_page = 1
-        self.__search_package()
-
-    def __search_package(self, page=None):
-        self.IDC_listResults.clear()
-        #if self.search_txt == u'' and self.current_group is None:
-        #    return
-        if page is not None:
-            self.util.msg_log(u'page is not None, cp:{0} pg:{1}'.format(self.current_page, page))
-            self.current_page = self.current_page + page
-            if self.current_page > self.page_count:
-                self.current_page = self.page_count
-            if self.current_page < 1:
-                self.current_page = 1
-            self.util.msg_log(u'page is not None, cp:{0} pg:{1}'.format(self.current_page, page))
-        QApplication.setOverrideCursor(Qt.WaitCursor)
-        if self.current_group is None:
-            # normal query: limit query to checked groups, or all if unchecked
-            self.util.msg_log(u'normal query')
-            groups = self.__get_selected_groups()
-            ok, result = self.cc.package_search(self.search_txt, groups, self.current_page)
-        else:
-            # double click on group in list, ignore query and return all
-            # packages for group
-            self.util.msg_log(u'query everything for group:{0}'.format(self.current_group))
-            ok, result = self.cc.show_group(self.current_group, self.current_page)
-        QApplication.restoreOverrideCursor()
-        if ok is False:
-            self.util.dlg_warning(result)
-            return
-        #if self.current_group is None:
-        #    self.result_count = result['count']
-        #else:
-        #    self.result_count = len(result)
-        self.result_count = result['count']
-        if self.result_count == 0:
-            self.current_page = 1
-            self.page_count = 1
-            self.IDC_lblSuchergebnisse.setText(self.util.tr('py_dlg_base_search_result_0'))
-            item = QListWidgetItem(self.util.tr('py_dlg_base_no_result'))
-            item.setData(Qt.UserRole, None)
-            self.IDC_listResults.addItem(item)
-            return
-
-        # self.current_page = 1
-        self.page_count = int(math.ceil(self.result_count / self.settings.results_limit))
-        if self.result_count % self.settings.results_limit != 0:
-            self.page_count += 1
-        erg_text = self.util.tr(u'py_dlg_base_result_count').format(self.result_count)
-        page_text = self.util.tr(u'py_dlg_base_page_count').format(self.current_page, self.page_count)
-        self.IDC_lblSuchergebnisse.setText(erg_text)
-        self.IDC_lblPage.setText(page_text)
-
-        #if self.current_group is None:
-        #    results = result['results']
-        #else:
-        #    results = result
-        results = result['results']
-
-        for entry in results:
-            title_txt = u'no title available'
-            e = entry['title']
-            if e is None:
-                title_txt = 'no title'
-            elif isinstance(e, dict):
-                # HACK! use first value
-                title_txt = e.itervalues().next()
-            elif isinstance(e, list):
-                # HACK! use first value
-                title_txt = e[0]
-            else:
-                title_txt = e
-            item = QListWidgetItem(title_txt)
-            item.setData(Qt.UserRole, entry)
-            self.IDC_listResults.addItem(item)
-
-    def list_group_item_changed(self, item):
-        self.searchtextchanged(self.IDC_lineSearch.text())
-
-    def resultitemchanged(self, new_item):
-        self.IDC_textDetails.setText('')
-        self.IDC_listRessources.clear()
-        self.IDC_plainTextLink.clear()
-        if new_item is None:
-            return
-        package = new_item.data(Qt.UserRole)
-        self.cur_package = package
-        if package is None:
-            return
-        self.IDC_textDetails.setText(
-            u'{0}\n\n{1}\n{2}\n\n{3}'.format(
-                package.get('notes', 'no notes'),
-                package.get('author', 'no author'),
-                package.get('author_email', 'no author_email'),
-                package.get('license_id', 'no license_id')
-            )
-        )
-        if package.get('num_resources', 0) > 0:
-            for res in package['resources']:
-                item = QListWidgetItem(u'{0}: {1}'.format(
-                    res.get('format', 'no format')
-                    , res.get('name', 'no name')
-                ))
-                item.setData(Qt.UserRole, res)
-                item.setCheckState(Qt.Unchecked)
-                self.IDC_listRessources.addItem(item)
-
-    def resource_item_changed(self, new_item):
-        if new_item is None:
-            return
-        url = new_item.data(Qt.UserRole)['url']
-        self.util.msg_log(url)
-        self.__fill_link_box(url)
-
-
-    def load_resource_clicked(self):
-        res = self.__get_selected_resources()
-        if res is None:
-            self.util.dlg_warning(self.util.tr(u'py_dlg_base_warn_no_resource'))
-            return
-        #self.util.dlg_warning(u'pkg:{0} res:{1} {2}'.format(self.cur_package['id'], res[0]['id'], res[0]['url']))
-        for resource in res:
-            if resource['name'] is None:
-#                 self.util.dlg_warning(self.util.tr(u'py_dlg_base_warn_no_resource_name').format(resource['id']))
-#                 continue
-                resource['name'] = "Unnamed resource"
-            if self.settings.debug:
-                self.util.msg_log(u'Bearbeite: {0}'.format(resource['name']))
-            dest_dir = os.path.join(
-                self.settings.cache_dir,
-                self.cur_package['id'],
-                resource['id']
-            )
-            if self.util.create_dir(dest_dir) is False:
-                self.util.dlg_warning(self.util.tr(u'py_dlg_base_warn_cache_dir_not_created').format(dest_dir))
-                return
-
-            dest_file = os.path.join(dest_dir, os.path.split(resource['url'])[1])
-
-            # wmts
-            format_lower = resource['format'].lower()
-            if format_lower == 'wms':
-                format_lower = 'wmts'
-            if format_lower == 'wmts':
-                resource_url = resource['url']
-                resource_url_lower = resource_url.lower()
-                if not resource_url_lower.endswith('.qlr'):
-                    dest_file += '.wmts'
-                #pyperclip.copy(resource_url)
-                """
-                self.util.dlg_information(u'{0}\n{1}\n\n{2}\n{3}\n{4}'.format(
-                    u'WMTS kann nicht automatisch geladen werden.',
-                    u'Der Link wurde in die Zwischenablage kopiert.',
-                    u'Layer -> Layer hinzufügen -> ',
-                    u'WMS/WMTS-Layer hinzufügen ->',
-                    u'Neu -> im Textfeld "URL" Strg+V drücken'
-                ))
-                continue
-                """
-            if format_lower == 'wfs':
-                dest_file += '.wfs'
-            if format_lower == 'georss':
-                dest_file += '.georss'
-
-            do_download = True
-            do_delete = False
-            if os.path.isfile(dest_file):
-                if QMessageBox.Yes == self.util.dlg_yes_no(self.util.tr(u'py_dlg_base_data_already_loaded')):
-                    do_delete = True
-                    do_download = True
-                else:
-                    do_download = False
-            if do_download is True:
-                file_size_ok, file_size = self.cc.get_file_size(resource['url'])
-                if not file_size_ok:
-                    self.util.dlg_warning(file_size)
-                    continue
-                if file_size > 50 and QMessageBox.No == self.util.dlg_yes_no(self.util.tr(u'py_dlg_base_big_file').format(file_size)):
-                    continue  # stop process if user does not want to download the file
-                QApplication.setOverrideCursor(Qt.WaitCursor)
-                ok, err_msg, new_file_name = self.cc.download_resource(
-                    resource['url']
-                    , resource['format']
-                    , dest_file
-                    , do_delete
-                )
-                QApplication.restoreOverrideCursor()
-                if ok is False:
-                    #self.util.dlg_warning(self.util.tr(u'py_dlg_base_download_error').format(err_msg))
-                    self.util.dlg_warning(err_msg)
-                    continue
-                # set new file name obtained from service 'content-disposition'
-                if new_file_name:
-                    dest_file = new_file_name
-                if os.path.basename(dest_file).lower().endswith('.zip'):
-                    ok, err_msg = self.util.extract_zip(dest_file, dest_dir)
-                    QApplication.restoreOverrideCursor()
-                    if ok is False:
-                        self.util.dlg_warning(self.util.tr(u'py_dlg_base_warn_not_extracted').format(err_msg))
-                        continue
-
-            #QApplication.setOverrideCursor(Qt.WaitCursor)
-            ok, err_msg = self.util.add_lyrs_from_dir(dest_dir, resource['name'], resource['url'])
-            #QApplication.restoreOverrideCursor()
-            if ok is False:
-#                 self.util.dlg_warning(self.util.tr(u'py_dlg_base_lyr_not_loaded').format(resource['name'], err_msg))
-                if isinstance(err_msg, dict):
-                    if QMessageBox.Yes == self.util.dlg_yes_no(self.util.tr(u'py_dlg_base_open_manager').format(resource['url'])):
-                        self.util.open_in_manager(err_msg["dir_path"])
-                else:
-                    self.util.dlg_warning(self.util.tr(u'py_dlg_base_lyr_not_loaded').format(resource['name'], err_msg))
-                continue
-
-    def next_page_clicked(self):
-        self.__search_package(page=+1)
-
-
-    def previous_page_clicked(self):
-        self.__search_package(page=-1)
-
-    def copy_clipboard(self):
-        pyperclip.copy(self.IDC_plainTextLink.toPlainText())
-
-    def __fill_link_box(self, url):
-        self.IDC_plainTextLink.setPlainText(url)
-
-    def __get_selected_groups(self):
-        groups = []
-        for i in range(0, self.IDC_listGroup.count()):
-            item = self.IDC_listGroup.item(i)
-            if item.checkState() == Qt.Checked:
-                groups.append(item.data(Qt.UserRole)['name'])
-
-        # None: means search all groups
-        if len(groups) < 1 or len(groups) == self.IDC_listGroup.count():
-            return None
-        return groups
-
-    def __get_selected_resources(self):
-        res = []
-        for i in range(0, self.IDC_listRessources.count()):
-            item = self.IDC_listRessources.item(i)
-            if item.checkState() == Qt.Checked:
-                res.append(item.data(Qt.UserRole))
-
-        if len(res) < 1:
-            return None
-        return res
-    
-    
-    def _shorten_path(self, s):
-        """ private class to shorten string to 33 chars and place a html-linebreak inside"""
-        result = u""
-        if len(s) > 33:
-            result = s[:33] + u'<br />' + self._shorten_path(s[33:])
-        else:
-            return s
-        return result
-    
-    def help_ttip_search(self):
-        self.util.dlg_information(self.util.tr(u'dlg_base_ttip_search'))
-        
-    def help_ttip_filter(self):
-        self.util.dlg_information(self.util.tr(u'dlg_base_ttip_filter'))
-        
-    def help_ttip_data_list(self):
-        self.util.dlg_information(self.util.tr(u'dlg_base_ttip_data_list'))
-        
-    def help_ttip_resource(self):
-        self.util.dlg_information(self.util.tr(u'dlg_base_ttip_resource'))

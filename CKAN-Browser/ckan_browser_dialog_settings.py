@@ -1,154 +1,184 @@
 # -*- coding: utf-8 -*-
-"""
-/***************************************************************************
- CKAN-Browser
-                                 A QGIS plugin
- Download and display CKAN enabled Open Data Portals
-                              -------------------
-        begin                : 2014-10-24
-        git sha              : $Format:%H$
-        copyright            : (C) 2014 by BergWerk GIS
-        email                : wb@BergWerk-GIS.at
- ***************************************************************************/
 
-/***************************************************************************
- *                                                                         *
- *   This program is free software; you can redistribute it and/or modify  *
- *   it under the terms of the GNU General Public License as published by  *
- *   the Free Software Foundation; either version 2 of the License, or     *
- *   (at your option) any later version.                                   *
- *                                                                         *
- ***************************************************************************/
-"""
+# Form implementation generated from reading ui file 'ckan_browser_dialog_settings.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
 
-import os
-from PyQt4.QtCore import Qt
-from PyQt4 import QtGui, uic
-from PyQt4.QtGui import QApplication, QDialog, QFileDialog
-from collections import OrderedDict
-from util import Util
-from ckanconnector import CkanConnector
-import json
+from PyQt5 import QtCore, QtGui, QtWidgets
 
+class Ui_CKANBrowserDialogSettings(object):
+    def setupUi(self, CKANBrowserDialogSettings):
+        CKANBrowserDialogSettings.setObjectName("CKANBrowserDialogSettings")
+        CKANBrowserDialogSettings.resize(704, 328)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(CKANBrowserDialogSettings.sizePolicy().hasHeightForWidth())
+        CKANBrowserDialogSettings.setSizePolicy(sizePolicy)
+        CKANBrowserDialogSettings.setMinimumSize(QtCore.QSize(704, 328))
+        CKANBrowserDialogSettings.setSizeGripEnabled(True)
+        CKANBrowserDialogSettings.setModal(True)
+        self.gridLayout = QtWidgets.QGridLayout(CKANBrowserDialogSettings)
+        self.gridLayout.setObjectName("gridLayout")
+        self.IDC_bSave = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_bSave.setObjectName("IDC_bSave")
+        self.gridLayout.addWidget(self.IDC_bSave, 6, 0, 1, 1)
+        self.IDC_bCancel = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_bCancel.setObjectName("IDC_bCancel")
+        self.gridLayout.addWidget(self.IDC_bCancel, 6, 1, 1, 1)
+        self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setSizeConstraint(QtWidgets.QLayout.SetMinimumSize)
+        self.gridLayout_2.setObjectName("gridLayout_2")
+        self.IDC_pbHelpCache = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_pbHelpCache.setMinimumSize(QtCore.QSize(14, 22))
+        self.IDC_pbHelpCache.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.IDC_pbHelpCache.setFont(font)
+        self.IDC_pbHelpCache.setIconSize(QtCore.QSize(16, 16))
+        self.IDC_pbHelpCache.setFlat(False)
+        self.IDC_pbHelpCache.setObjectName("IDC_pbHelpCache")
+        self.gridLayout_2.addWidget(self.IDC_pbHelpCache, 9, 1, 1, 1)
+        self.IDC_lblPreCkanApi = QtWidgets.QLabel(CKANBrowserDialogSettings)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.IDC_lblPreCkanApi.sizePolicy().hasHeightForWidth())
+        self.IDC_lblPreCkanApi.setSizePolicy(sizePolicy)
+        self.IDC_lblPreCkanApi.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.IDC_lblPreCkanApi.setObjectName("IDC_lblPreCkanApi")
+        self.gridLayout_2.addWidget(self.IDC_lblPreCkanApi, 3, 0, 1, 1)
+        self.label = QtWidgets.QLabel(CKANBrowserDialogSettings)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy)
+        self.label.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label.setObjectName("label")
+        self.gridLayout_2.addWidget(self.label, 9, 0, 1, 1)
+        self.IDC_bChoosePre = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_bChoosePre.setMinimumSize(QtCore.QSize(0, 32))
+        self.IDC_bChoosePre.setObjectName("IDC_bChoosePre")
+        self.gridLayout_2.addWidget(self.IDC_bChoosePre, 4, 3, 1, 1)
+        self.IDC_cbPreCkanApi = QtWidgets.QComboBox(CKANBrowserDialogSettings)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.IDC_cbPreCkanApi.sizePolicy().hasHeightForWidth())
+        self.IDC_cbPreCkanApi.setSizePolicy(sizePolicy)
+        self.IDC_cbPreCkanApi.setMinimumSize(QtCore.QSize(0, 26))
+        self.IDC_cbPreCkanApi.setObjectName("IDC_cbPreCkanApi")
+        self.gridLayout_2.addWidget(self.IDC_cbPreCkanApi, 4, 0, 1, 3)
+        self.IDC_lblCkanApi = QtWidgets.QLabel(CKANBrowserDialogSettings)
+        self.IDC_lblCkanApi.setEnabled(True)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.IDC_lblCkanApi.sizePolicy().hasHeightForWidth())
+        self.IDC_lblCkanApi.setSizePolicy(sizePolicy)
+        self.IDC_lblCkanApi.setObjectName("IDC_lblCkanApi")
+        self.gridLayout_2.addWidget(self.IDC_lblCkanApi, 0, 0, 1, 1)
+        self.IDC_pbHelpPreset = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_pbHelpPreset.setMinimumSize(QtCore.QSize(14, 22))
+        self.IDC_pbHelpPreset.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.IDC_pbHelpPreset.setFont(font)
+        self.IDC_pbHelpPreset.setObjectName("IDC_pbHelpPreset")
+        self.gridLayout_2.addWidget(self.IDC_pbHelpPreset, 3, 1, 1, 1)
+        self.IDC_pbHelpURL = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_pbHelpURL.setMinimumSize(QtCore.QSize(14, 22))
+        self.IDC_pbHelpURL.setMaximumSize(QtCore.QSize(18, 22))
+        font = QtGui.QFont()
+        font.setBold(True)
+        font.setWeight(75)
+        self.IDC_pbHelpURL.setFont(font)
+        self.IDC_pbHelpURL.setObjectName("IDC_pbHelpURL")
+        self.gridLayout_2.addWidget(self.IDC_pbHelpURL, 0, 1, 1, 1)
+        self.line_2 = QtWidgets.QFrame(CKANBrowserDialogSettings)
+        self.line_2.setMinimumSize(QtCore.QSize(0, 20))
+        self.line_2.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_2.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_2.setObjectName("line_2")
+        self.gridLayout_2.addWidget(self.line_2, 6, 0, 1, 4)
+        self.line = QtWidgets.QFrame(CKANBrowserDialogSettings)
+        self.line.setMinimumSize(QtCore.QSize(0, 20))
+        self.line.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line.setObjectName("line")
+        self.gridLayout_2.addWidget(self.line, 2, 0, 1, 4)
+        self.IDC_lblPreCkan = QtWidgets.QLabel(CKANBrowserDialogSettings)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.IDC_lblPreCkan.sizePolicy().hasHeightForWidth())
+        self.IDC_lblPreCkan.setSizePolicy(sizePolicy)
+        self.IDC_lblPreCkan.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setBold(False)
+        font.setWeight(50)
+        self.IDC_lblPreCkan.setFont(font)
+        self.IDC_lblPreCkan.setObjectName("IDC_lblPreCkan")
+        self.gridLayout_2.addWidget(self.IDC_lblPreCkan, 5, 0, 1, 4)
+        self.IDC_leCkanApi = QtWidgets.QLineEdit(CKANBrowserDialogSettings)
+        self.IDC_leCkanApi.setEnabled(True)
+        self.IDC_leCkanApi.setMinimumSize(QtCore.QSize(0, 22))
+        self.IDC_leCkanApi.setObjectName("IDC_leCkanApi")
+        self.gridLayout_2.addWidget(self.IDC_leCkanApi, 1, 0, 1, 3)
+        self.IDC_bCkanAPI = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_bCkanAPI.setMinimumSize(QtCore.QSize(0, 32))
+        self.IDC_bCkanAPI.setObjectName("IDC_bCkanAPI")
+        self.gridLayout_2.addWidget(self.IDC_bCkanAPI, 1, 3, 1, 1)
+        self.IDC_bCacheDir = QtWidgets.QPushButton(CKANBrowserDialogSettings)
+        self.IDC_bCacheDir.setMinimumSize(QtCore.QSize(0, 32))
+        self.IDC_bCacheDir.setObjectName("IDC_bCacheDir")
+        self.gridLayout_2.addWidget(self.IDC_bCacheDir, 10, 3, 1, 1)
+        self.IDC_leCacheDir = QtWidgets.QLineEdit(CKANBrowserDialogSettings)
+        self.IDC_leCacheDir.setMinimumSize(QtCore.QSize(0, 22))
+        self.IDC_leCacheDir.setReadOnly(True)
+        self.IDC_leCacheDir.setObjectName("IDC_leCacheDir")
+        self.gridLayout_2.addWidget(self.IDC_leCacheDir, 10, 0, 1, 3)
+        self.gridLayout.addLayout(self.gridLayout_2, 1, 0, 1, 2)
+        self.line_3 = QtWidgets.QFrame(CKANBrowserDialogSettings)
+        self.line_3.setFrameShape(QtWidgets.QFrame.HLine)
+        self.line_3.setFrameShadow(QtWidgets.QFrame.Sunken)
+        self.line_3.setObjectName("line_3")
+        self.gridLayout.addWidget(self.line_3, 2, 0, 1, 2)
 
-FORM_CLASS, _ = uic.loadUiType(os.path.join(
-    os.path.dirname(__file__), 'ckan_browser_dialog_settings.ui'))
+        self.retranslateUi(CKANBrowserDialogSettings)
+        self.IDC_bSave.clicked.connect(CKANBrowserDialogSettings.save)
+        self.IDC_bCancel.clicked.connect(CKANBrowserDialogSettings.cancel)
+        self.IDC_bCacheDir.clicked.connect(CKANBrowserDialogSettings.select_cache_dir)
+        self.IDC_bCkanAPI.clicked.connect(CKANBrowserDialogSettings.test_ckan_url)
+        self.IDC_cbPreCkanApi.activated['QString'].connect(CKANBrowserDialogSettings.pre_ckan_api)
+        self.IDC_pbHelpCache.clicked.connect(CKANBrowserDialogSettings.help_cache_dir)
+        self.IDC_pbHelpPreset.clicked.connect(CKANBrowserDialogSettings.help_pre_urls)
+        self.IDC_pbHelpURL.clicked.connect(CKANBrowserDialogSettings.help_api_url)
+        self.IDC_bChoosePre.clicked.connect(CKANBrowserDialogSettings.choose_pre_api)
+        QtCore.QMetaObject.connectSlotsByName(CKANBrowserDialogSettings)
 
-class CKANBrowserDialogSettings(QtGui.QDialog, FORM_CLASS):
-    def __init__(self, settings, iface, parent=None):
-        """Constructor."""
-        super(CKANBrowserDialogSettings, self).__init__(parent)
-        # Set up the user interface from Designer.
-        # After setupUI you can access any designer object by doing
-        # self.<objectname>, and you can use autoconnect slots - see
-        # http://qt-project.org/doc/qt-4.8/designer-using-a-ui-file.html
-        # #widgets-and-dialogs-with-auto-connect
-        self.setupUi(self)
-        self.iface = iface
-        self.main_win = parent
-        self.settings = settings
-        self.util = Util(self.settings, self.main_win)
+    def retranslateUi(self, CKANBrowserDialogSettings):
+        _translate = QtCore.QCoreApplication.translate
+        CKANBrowserDialogSettings.setWindowTitle(_translate("CKANBrowserDialogSettings", "dlg_set_title"))
+        self.IDC_bSave.setText(_translate("CKANBrowserDialogSettings", "dlg_set_btn_save"))
+        self.IDC_bCancel.setText(_translate("CKANBrowserDialogSettings", "dlg_set_btn_cancel"))
+        self.IDC_pbHelpCache.setToolTip(_translate("CKANBrowserDialogSettings", "dlg_set_tool_cache"))
+        self.IDC_pbHelpCache.setText(_translate("CKANBrowserDialogSettings", "?"))
+        self.IDC_lblPreCkanApi.setText(_translate("CKANBrowserDialogSettings", "dlg_set_pre_api"))
+        self.label.setText(_translate("CKANBrowserDialogSettings", "dlg_set_cache_path"))
+        self.IDC_bChoosePre.setText(_translate("CKANBrowserDialogSettings", "dlg_set_choose_pre"))
+        self.IDC_lblCkanApi.setText(_translate("CKANBrowserDialogSettings", "dlg_set_ckan_api"))
+        self.IDC_pbHelpPreset.setToolTip(_translate("CKANBrowserDialogSettings", "dlg_set_tool_pre_urls"))
+        self.IDC_pbHelpPreset.setText(_translate("CKANBrowserDialogSettings", "?"))
+        self.IDC_pbHelpURL.setToolTip(_translate("CKANBrowserDialogSettings", "dlg_set_tool_api_url"))
+        self.IDC_pbHelpURL.setText(_translate("CKANBrowserDialogSettings", "?"))
+        self.IDC_lblPreCkan.setText(_translate("CKANBrowserDialogSettings", "dlg_set_v3_only"))
+        self.IDC_bCkanAPI.setToolTip(_translate("CKANBrowserDialogSettings", "dlg_set_tool_test"))
+        self.IDC_bCkanAPI.setText(_translate("CKANBrowserDialogSettings", "dlg_set__btn_test"))
+        self.IDC_bCacheDir.setText(_translate("CKANBrowserDialogSettings", "dlg_set_ellipsis"))
 
-        self.IDC_leCacheDir.setText(self.settings.cache_dir)
-        self.IDC_leCkanApi.setText(self.settings.ckan_url)
-                
-        self.cc = CkanConnector(self.settings, self.util)
-        
-        self.pre_ckan_apis = None
-        self.fill_combobox();
-        
-    def fill_combobox(self):
-        """ Fill Combobox with predefined CKAN API Urls """
-        try:
-            json_path = self.util.resolve(u'CKAN_APIs.json')
-            with open(json_path) as json_file:    
-                self.pre_ckan_apis = json.load(json_file, object_pairs_hook=OrderedDict)
-            
-            for key in self.pre_ckan_apis.keys():
-                self.IDC_cbPreCkanApi.addItem(key)
-                
-            value = self.pre_ckan_apis.itervalues().next()
-            self.IDC_lblPreCkan.setText(value)
-                
-        except IOError as err:
-            self.util.dlg_warning(self.util.tr(u"py_dlg_set_warn_urls_not_load").format(err))
-        
-
-    def select_cache_dir(self):
-        cache_dir = QFileDialog.getExistingDirectory(
-            self.main_win,
-            self.settings.DLG_CAPTION,
-            self.settings.cache_dir,
-            QFileDialog.ShowDirsOnly | QFileDialog.DontResolveSymlinks
-        )
-        if '' == cache_dir:
-            self.util.msg_log('no cachedir selected')
-        else:
-            self.IDC_leCacheDir.setText(cache_dir)
-
-
-    def test_ckan_url(self):
-        """ Test if URL in LineEdit is a valid CKAN API URL """
-        api_url = self.IDC_leCkanApi.text()
-        self.util.msg_log('URL: {0}'.format(api_url))
-        
-        QApplication.setOverrideCursor(Qt.WaitCursor)
-        ok, result = self.cc.test_groups(api_url)
-        QApplication.restoreOverrideCursor()
-        
-        if ok is False:
-            self.util.dlg_warning(result)
-            return
-        else:
-            self.util.dlg_information(self.util.tr(u"py_dlg_set_info_conn_succs"))
-
-#         for entry in result:
-#             self.util.msg_log('Item: {0}'.format(entry))
-
-
-    def pre_ckan_api(self):
-        """select CKAN API from predefined file"""
-        try:
-            key = self.IDC_cbPreCkanApi.currentText()
-            value = self.pre_ckan_apis[key]
-            self.IDC_lblPreCkan.setText(value)
-        except TypeError as err:
-            self.util.msg_log('Error: No items in Preselected-Combo-Box: {0}'.format(err))
-            pass
-
-
-    def choose_pre_api(self):
-        value = self.IDC_lblPreCkan.text()
-        self.IDC_leCkanApi.setText(value)
-
-    def cancel(self):
-        QDialog.reject(self)
-
-    def save(self):
-        cache_dir = self.IDC_leCacheDir.text()
-        if self.util.check_dir(cache_dir) is False:
-            self.util.dlg_warning(
-                self.util.tr(u'py_dlg_set_warn_cache_not_use').format(self.settings.cache_dir)
-            )
-            return
-        
-        # check URL - must not be empty
-        api_url = self.IDC_leCkanApi.text()
-        if self.util.check_api_url(api_url) is False:
-            self.util.dlg_warning(self.util.tr(u'py_dlg_set_warn_ckan_url'))
-            return
-        
-        self.settings.cache_dir = cache_dir
-        self.settings.ckan_url = api_url
-        self.settings.save()
-
-        QDialog.accept(self)
-
-    def help_cache_dir(self):
-        self.util.dlg_information(self.util.tr(u'dlg_set_tool_cache'))
-        
-    def help_pre_urls(self):
-        self.util.dlg_information(self.util.tr(u'dlg_set_tool_pre_urls'))
-        
-    def help_api_url(self):
-        self.util.dlg_information(self.util.tr(u'dlg_set_tool_api_url'))
