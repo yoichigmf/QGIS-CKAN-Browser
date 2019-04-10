@@ -215,7 +215,9 @@ class CKANBrowser:
         dir_check = self.util.check_dir(self.settings.cache_dir)
         api_url_check = self.util.check_api_url(self.settings.ckan_url)
         if dir_check is False or api_url_check is False:
-            dlg = CKANBrowserDialogSettings(self.settings, self.iface, self.iface.mainWindow())
+        
+            #dlg = CKANBrowserDialogSettings( self.settings, self.iface, self.iface.mainWindow())
+            dlg = CKANBrowserDialogSettings( self.settings)
             dlg.show()
             result = dlg.exec_()
             if result != 1:

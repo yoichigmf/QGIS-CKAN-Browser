@@ -9,7 +9,7 @@ import subprocess
 import sys
 import zipfile
 import json
-from PyQt4.QtCore import \
+from PyQt5.QtCore import \
     QCoreApplication, \
     QDateTime, \
     QDir, \
@@ -17,19 +17,20 @@ from PyQt4.QtCore import \
     QFileInfo, \
     QIODevice, \
     QObject, \
-    QSettings, \
-    QUrl, \
-    SIGNAL, \
-    SLOT
-from PyQt4.QtGui import QMessageBox
-from PyQt4.QtXml import QDomNode, QDomElement, QDomDocument, QDomNodeList
-from qgis.core import QgsMapLayerRegistry, QgsMessageLog, QgsVectorLayer, QgsRasterLayer, QgsProviderRegistry
-from qgis.core import QgsLayerTreeGroup, QgsProject
-from qgis._core import QgsMapLayer
-
+    QSettings,\
+    QUrl
+    #SLOT
+    #    SIGNAL, \
+#from PyQt5.QtGui import QMessageBox
+from PyQt5.QtXml import QDomNode, QDomElement, QDomDocument, QDomNodeList
+#from qgis.core import QgsMapLayerRegistry, QgsMessageLog, QgsVectorLayer, QgsRasterLayer, QgsProviderRegistry
+#from qgis.core import QgsLayerTreeGroup, QgsProject
+#from qgis._core import QgsMapLayer
+from qgis._core import *
 
 class Util:
 
+    #def __init__(self, settings, main_win):
     def __init__(self, settings, main_win):
         self.main_win = main_win
         self.dlg_caption = settings.DLG_CAPTION
@@ -49,8 +50,9 @@ class Util:
         :rtype: QString
         """
         # noinspection PyTypeChecker,PyArgumentList,PyCallByClass
-        return QCoreApplication.translate('CKANBrowser', message, encoding=QCoreApplication.UnicodeUTF8)
-
+        return QCoreApplication.translate('CKANBrowser', message)
+        #return QCoreApplication.translate('CKANBrowser', message, encoding=QCoreApplication.UnicodeUTF8)
+        
     def create_dir(self, dir_path):
         if not os.path.exists(dir_path):
             try:
